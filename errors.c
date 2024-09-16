@@ -8,6 +8,7 @@ void iSP()
     system("cls");
     printf("ERROR. Invalid ship Placement\n");
     getchar();
+    //getchar();
 }
 
 void iC()

@@ -532,10 +532,13 @@ int enemyShoots(char* field)
     if (*(field + i*10 + j)=='`')
         {
             *(field + i*10 + j)='o';
+            printf("Enemie MISSES %d %d\n",i,j);
             return 0;
         }
     else if (*(field + i*10 + j)=='*')
         {
+            *(field + i*10 + j)='X';
+            printf("Enemie HIT %d %d\n",i,j);
             return 1;
         }
             

@@ -15,6 +15,7 @@ int main()
         system("cls");
         char yourField[10][10];
         fillWithWater(yourField[0]);
+        int refresh[10]={4,3,3,2,2,2,1,1,1,1};
         int freeShips[10]={4,3,3,2,2,2,1,1,1,1};
         drawMenu();
         selectionButton = getch();
@@ -28,10 +29,10 @@ int main()
                 {
                     
                     fillWithWater(yourField[0]);
-                    drawConstructionMenu(yourField,freeShips);
+                    
                     while(selectionButton!='0')
                     {
-                        
+                        drawConstructionMenu(yourField,freeShips);
                         selectionButton=getch();
                         if (selectionButton=='1')
                         {
@@ -51,8 +52,6 @@ int main()
                                         {
                                             putShip(letter,number,1,yourField[0],1);
                                             removeShip(&freeShips,1);
-                                            printf("Adding 1 decker to %c%c",letter,number);
-                                            getchar();
                                         }
                                         else    iSP();
                                     }
@@ -70,15 +69,13 @@ int main()
                                     if ((isCorrectInput(letter)==1)&&(isCorrectInput(number)==1))
                                     {
                                         verticalOrHorizontal();
-                                        selectionButton = getchar();
+                                        selectionButton = getch();
                                         if (selectionButton == '1')
                                         {
                                             if (isOkToPlace(letter,number,2,yourField,1)==1)
                                             {
                                                 putShip(letter,number,2,yourField[0],1);
                                                 removeShip(&freeShips,2);
-                                                printf("Adding 2 decker to %c%c",letter,number);
-                                                getchar();
                                             }
                                             else    iSP();
                                         }
@@ -88,8 +85,6 @@ int main()
                                             {
                                                 putShip(letter,number,2,yourField[0],2);
                                                 removeShip(&freeShips,2);
-                                                printf("Adding 2 decker to %c%c",letter,number);
-                                                getchar();
                                             }
                                             else    iSP();
                                         }
@@ -108,15 +103,13 @@ int main()
                                     if ((isCorrectInput(letter)==1)&&(isCorrectInput(number)==1))
                                     {
                                         verticalOrHorizontal();
-                                        selectionButton = getchar();
+                                        selectionButton = getch();
                                         if (selectionButton == '1')
                                         {
                                             if (isOkToPlace(letter,number,3,yourField,1)==1)
                                             {
                                                 putShip(letter,number,3,yourField[0],1);
                                                 removeShip(&freeShips,3);
-                                                printf("Adding 3 decker to %c%c",letter,number);
-                                                getchar();
                                             }
                                             else    iSP();
                                         }
@@ -126,8 +119,6 @@ int main()
                                             {
                                                 putShip(letter,number,3,yourField[0],2);
                                                 removeShip(&freeShips,3);
-                                                printf("Adding 3 decker to %c%c",letter,number);
-                                                getchar();
                                             }
                                             else    iSP();
                                         }
@@ -146,15 +137,13 @@ int main()
                                     if ((isCorrectInput(letter)==1)&&(isCorrectInput(number)==1))
                                     {
                                         verticalOrHorizontal();
-                                        selectionButton = getchar();
+                                        selectionButton = getch();
                                         if (selectionButton == '1')
                                         {
                                             if (isOkToPlace(letter,number,4,yourField,1)==1)
                                             {
                                                 putShip(letter,number,4,yourField[0],1);
                                                 removeShip(&freeShips,4);
-                                                printf("Adding 4 decker to %c%c",letter,number);
-                                                getchar();
                                             }
                                             else    iSP();
                                         }
@@ -164,8 +153,6 @@ int main()
                                             {
                                                 putShip(letter,number,4,yourField[0],2);
                                                 removeShip(&freeShips,4);
-                                                printf("Adding 4 decker to %c%c",letter,number);
-                                                getchar();
                                             }
                                             else    iSP();
                                         }
@@ -174,7 +161,8 @@ int main()
                                 }
                                 else    nETTS();
                             }
-                            else nS();
+                            //else nS();
+                            if (selectionButton!='0') selectionButton = '1';
                         }
                         else if (selectionButton=='2')
                         {
@@ -182,22 +170,26 @@ int main()
                             printf("nothing there...\n");
                             getch();
                         }
-                        else if ((selectionButton=='3')&&(isReady(freeShips)==1))
+                        else if ((selectionButton=='0')&&(isReady(freeShips)!=1))
                         {
                             system("cls");
-                            printField(yourField);
-                            char enemieField[10][10];
-                            fillWithWater(enemieField[0]);
-                            generateRandomField(enemieField[0]);
-                            printField(enemieField);
-                            getch();
+                            printf("Your field is not complete. If you leave it will not be saved.\n");
+                            printf("Are you sure you want to exit?\n");
+                            printf("1. No\n");
+                            printf("0. Yes\n");
+                            selectionButton = getch();
+                            if (selectionButton=='0')
+                            {
+                                fillWithWater(yourField[0]);
+                                for (int i=0; i<10; i++) freeShips[i] = refresh[i];
+                            }
                         }
                     }
-                    selectionButton = '1';
                 }
                 else if (selectionButton=='2')
                 {
                     generateRandomField(yourField[0]);
+                    for (int i=0; i<10; i++) freeShips[i]=0;
                     while(selectionButton!='0')
                     {
                         generatedFieldMenu(yourField);
@@ -240,51 +232,64 @@ int main()
                 }
             }
             
-            system("cls");
-            printField(yourField);
-            printf("1. Start game\n");
-            printf("0. Back\n");
-            selectionButton = getch();
-            if(selectionButton=='1')
+            if (isReady(freeShips)==1)
             {
-                int gameOver = 0;
-                char lettershot,numbershot;
-                char enemyField[10][10];
-                fillWithWater(enemyField[0]);
-                generateRandomField(enemyField[0]);
-                while (gameOver!=1)
+                system("cls");
+                printField(yourField);
+                printf("1. Start game\n");
+                printf("0. Back\n");
+                selectionButton = getch();
+                if(selectionButton=='1')
                 {
-                    system("cls");
-                    printf("----YOUR FIELD----");
-                    printField(yourField);
-                    printf("---ENEMY FIELD---");
-                    printEncryptedEnemyField(enemyField);
-                    printf("Selecft Field to shoot: \n");
-                    scanf(" %c %c",&lettershot,&numbershot);
-                    getchar();
-                    if ((isCorrectInput(lettershot)==1)&&(isCorrectInput(numbershot)==1))
-                        {
-                            if (checkShot(enemyField,lettershot,numbershot)==1)
-                            {
-                                int check;
-                                check = commitShot(enemyField[0],lettershot,numbershot);
-                                if (check==0) enemyShoots(yourField[0]);
-                            }
-                            else 
-                            {
-                                printf("This spot was alredy shot!\n");
-                                getchar();
-                            }
-                        }
-                    if ((isAlive(yourField)==0)||(isAlive(enemyField)==0))
+                    int gameOver = 0;
+                    char lettershot,numbershot;
+                    char enemyField[10][10];
+                    fillWithWater(enemyField[0]);
+                    generateRandomField(enemyField[0]);
+                    int eLS=0;
+                    while (gameOver!=1)
                     {
                         system("cls");
-                        printf("GAME OVER\n");
+                        printf("----YOUR FIELD----");
+                        printField(yourField);
+                        printf("---ENEMY FIELD---");
+                        printEncryptedEnemyField(enemyField);
+                        printf("Selecft Field to shoot: \n");
+                        scanf(" %c %c",&lettershot,&numbershot);
                         getchar();
-                        gameOver = 1;
+                        if ((isCorrectInput(lettershot)==1)&&(isCorrectInput(numbershot)==1))
+                            {
+                                if (checkShot(enemyField,lettershot,numbershot)==1)
+                                {
+                                    int check;
+                                    check = commitShot(enemyField[0],lettershot,numbershot);
+                                    if (check==0) 
+                                    {
+                                        eLS=1;
+                                        while(eLS==1) 
+                                        {
+                                            eLS=enemyShoots(yourField[0]); 
+                                            getchar();
+                                        } 
+                                    }
+                                }
+                                else 
+                                {
+                                    printf("This spot was alredy shot!\n");
+                                    getchar();
+                                }
+                            }
+                        if ((isAlive(yourField)==0)||(isAlive(enemyField)==0))
+                        {
+                            system("cls");
+                            printf("GAME OVER\n");
+                            getchar();
+                            gameOver = 1;
+                        }   
                     }
                 }
             }
+            
 
         }
         else if (selectionButton=='2')

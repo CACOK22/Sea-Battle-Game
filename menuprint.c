@@ -87,6 +87,7 @@ void drawDeckerChoiceMenu(char yourField[10][10],int freeShips[10])
     printf("2. Add 2 Decker\n");
     printf("3. Add 3 Decker\n");
     printf("4. Add 4 Decker\n");
+    printf("0. Back\n");
 }
 
 void saveChoiceMenu()
