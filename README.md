@@ -1,7 +1,7 @@
-TODO
+# TODO
 # Finish the field constructor
 # Add simple AI to bot
-# Setting to difficulty level and bot behaviour
+# difficulty level and bot behaviour settings
 # Fix save and load
 # Normalize README
 
