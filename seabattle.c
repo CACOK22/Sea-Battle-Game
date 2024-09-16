@@ -5,6 +5,8 @@
 #include "menuprint.h"
 #include "errors.h"
 
+
+
 int main()
 {
     char selectionButton = '1';
@@ -246,18 +248,40 @@ int main()
             if(selectionButton=='1')
             {
                 int gameOver = 0;
+                char lettershot,numbershot;
+                char enemyField[10][10];
+                fillWithWater(enemyField[0]);
+                generateRandomField(enemyField[0]);
                 while (gameOver!=1)
                 {
                     system("cls");
                     printf("----YOUR FIELD----");
                     printField(yourField);
-                    char enemyField[10][10];
-                    fillWithWater(enemyField[0]);
-                    generateRandomField(enemyField[0]);
                     printf("---ENEMY FIELD---");
                     printEncryptedEnemyField(enemyField);
-                    getch();
-                    gameOver=1;
+                    printf("Selecft Field to shoot: \n");
+                    scanf(" %c %c",&lettershot,&numbershot);
+                    getchar();
+                    if ((isCorrectInput(lettershot)==1)&&(isCorrectInput(numbershot)==1))
+                        {
+                            if (checkShot(enemyField,lettershot,numbershot)==1)
+                            {
+                                commitShot(enemyField[0],lettershot,numbershot);
+                                enemyShoots(yourField[0]);
+                            }
+                            else 
+                            {
+                                printf("This spot was alredy shot!\n");
+                                getchar();
+                            }
+                        }
+                    if ((isAlive(yourField)==0)||(isAlive(enemyField)==0))
+                    {
+                        system("cls");
+                        printf("GAME OVER\n");
+                        getchar();
+                        gameOver = 1;
+                    }
                 }
             }
 

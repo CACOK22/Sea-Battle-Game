@@ -383,6 +383,7 @@ void printEncryptedEnemyField(char field[10][10])
         {
             if((field[i][j]=='`')||(field[i][j]=='*'))
                 printf("/");
+            else printf("%c",field[i][j]);
         }      
         printf("\n");
     }
@@ -479,4 +480,62 @@ void loadFile3(char* field)
         else j++;
     }   
     fclose(fieldSaved);
+}
+
+int isAlive(char field[10][10])
+{
+    for (int i=0; i<10; i++)
+    {
+        for(int j=0; j<10; j++)
+        {
+            if (field[i][j]=='*')
+                return 1;
+        }
+    }
+    return 0;
+}
+
+int checkShot(char field[10][10],char letter, char number)
+{
+    int l = letterToNumber(letter);
+    int n = numberToNumber(number);
+    if ((field[l][n]=='o')||(field[l][n]=='X')) return 0;
+    return 1;
+}
+
+void commitShot(char* field,char letter,char number)
+{
+    int i = letterToNumber(letter);
+    int j = numberToNumber(number);
+    if (*(field + i*10 + j)=='`')
+    {
+        *(field + i*10 + j)='o';
+    }
+    else if (*(field + i*10 + j)=='*')
+    {
+        *(field + i*10 + j)='X';
+    }
+}
+
+void enemyShoots(char* field)
+{
+    int i,j;
+    i = rand() % 10;
+    j = rand() % 10;
+    if ((*(field + i*10 + j)=='o')||(*(field + i*10 + j)=='X')) 
+    { 
+        i = rand() % 10;
+        j = rand() % 10;
+    }
+    else 
+    {
+        if (*(field + i*10 + j)=='`')
+        {
+            *(field + i*10 + j)='o';
+        }
+        else if (*(field + i*10 + j)=='*')
+        {
+            *(field + i*10 + j)='X';
+        }
+    }
 }

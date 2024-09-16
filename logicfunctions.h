@@ -21,3 +21,7 @@ void fieldSave3(char yourField[10][10]);
 void loadFile1(char* field);
 void loadFile2(char* field);
 void loadFile3(char* field);
+int isAlive(char field[10][10]);
+int checkShot(char field[10][10],char letter, char number);
+void commitShot(char* field,char letter,char number);
+void enemyShoots(char* field);
