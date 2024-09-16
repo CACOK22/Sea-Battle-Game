@@ -503,39 +503,41 @@ int checkShot(char field[10][10],char letter, char number)
     return 1;
 }
 
-void commitShot(char* field,char letter,char number)
+int commitShot(char* field,char letter,char number)
 {
     int i = letterToNumber(letter);
     int j = numberToNumber(number);
     if (*(field + i*10 + j)=='`')
     {
         *(field + i*10 + j)='o';
+        return 0;
     }
     else if (*(field + i*10 + j)=='*')
     {
         *(field + i*10 + j)='X';
+        return 1;
     }
 }
 
-void enemyShoots(char* field)
+int enemyShoots(char* field)
 {
     int i,j;
     i = rand() % 10;
     j = rand() % 10;
-    if ((*(field + i*10 + j)=='o')||(*(field + i*10 + j)=='X')) 
+    while ((*(field + i*10 + j)=='o')||(*(field + i*10 + j)=='X')) 
     { 
         i = rand() % 10;
         j = rand() % 10;
     }
-    else 
-    {
-        if (*(field + i*10 + j)=='`')
+    if (*(field + i*10 + j)=='`')
         {
             *(field + i*10 + j)='o';
+            return 0;
         }
-        else if (*(field + i*10 + j)=='*')
+    else if (*(field + i*10 + j)=='*')
         {
-            *(field + i*10 + j)='X';
+            return 1;
         }
-    }
+            
+    
 }

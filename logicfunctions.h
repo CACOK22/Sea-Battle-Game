@@ -23,5 +23,5 @@ void loadFile2(char* field);
 void loadFile3(char* field);
 int isAlive(char field[10][10]);
 int checkShot(char field[10][10],char letter, char number);
-void commitShot(char* field,char letter,char number);
-void enemyShoots(char* field);
+int commitShot(char* field,char letter,char number);
+int enemyShoots(char* field);

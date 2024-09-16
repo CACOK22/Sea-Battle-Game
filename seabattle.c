@@ -266,8 +266,9 @@ int main()
                         {
                             if (checkShot(enemyField,lettershot,numbershot)==1)
                             {
-                                commitShot(enemyField[0],lettershot,numbershot);
-                                enemyShoots(yourField[0]);
+                                int check;
+                                check = commitShot(enemyField[0],lettershot,numbershot);
+                                if (check==0) enemyShoots(yourField[0]);
                             }
                             else 
                             {
