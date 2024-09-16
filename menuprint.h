@@ -1,0 +1,11 @@
+void drawWithNotice(char field[10][10], int ships[10]);
+void printField(char field[10][10]);
+void drawMenu();
+void drawNewGameMenu();
+void drawConstructionMenu(char yourField[10][10],int freeShips[10]);
+void drawDeckerChoiceMenu(char yourField[10][10],int freeShips[10]);
+void saveChoiceMenu();
+void loadFileMenu();
+void generatedFieldMenu(char yourField[10][10]);
+void askTheAdress(char field[10][10],int freeShips[10]);
+void verticalOrHorizontal();
