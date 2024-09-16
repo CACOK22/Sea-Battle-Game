@@ -1,3 +1,12 @@
+TODO
+# Finish the field constructor
+# Add simple AI to bot
+# Setting to difficulty level and bot behaviour
+# Fix save and load
+# Normalize README
+
+
+
 This is a simple console game of "Sea Battle".
 Rules are easy:
 You and your enemy (bot) have 10 ships, on a field of 10 by 10 squares.
