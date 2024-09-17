@@ -5,7 +5,7 @@
 #include "menuprint.h"
 #include "errors.h"
 
-
+int bD = 0;
 
 int main()
 {
@@ -263,6 +263,7 @@ int main()
                     fillWithWater(enemyField[0]);
                     generateRandomField(enemyField[0]);
                     int eLS=0;
+                    int lsx,lsy,lssx,lssy;
                     while (gameOver!=1)
                     {
                         system("cls");
@@ -284,7 +285,7 @@ int main()
                                         eLS=1;
                                         while(eLS==1) 
                                         {
-                                            eLS=enemyShoots(yourField[0]); 
+                                            eLS=enemyShoots(yourField[0],&lsx,&lsy,&lssx,&lssy); 
                                             getchar();
                                         } 
                                     }
@@ -317,8 +318,24 @@ int main()
         else if (selectionButton=='3')
         {
             system("cls");
-            printf("Settings\n");
-            getch();
+            printf("1. Set bot difficulty to 1\n");
+            printf("2. Set bot difficulty to 2\n");
+            printf("0. Back\n");
+            selectionButton=getch();
+            if (selectionButton=='1')
+            {
+                bD = 0;
+                system("cls");
+                printf("success!\n");
+                getchar();
+            }
+            else if (selectionButton=='2')
+            {
+                bD = 1;
+                system("cls");
+                printf("success!\n");
+                getchar();
+            }
         }
         
     }

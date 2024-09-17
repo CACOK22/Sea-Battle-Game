@@ -24,4 +24,4 @@ void loadFile3(char* field);
 int isAlive(char field[10][10]);
 int checkShot(char field[10][10],char letter, char number);
 int commitShot(char* field,char letter,char number);
-int enemyShoots(char* field);
+int enemyShoots(char* field,int *lsx, int *lsy, int *lssx, int *lssy);

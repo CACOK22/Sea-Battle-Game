@@ -519,7 +519,7 @@ int commitShot(char* field,char letter,char number)
     }
 }
 
-int enemyShoots(char* field)
+int enemyShoots(char* field,int *lsx, int *lsy, int *lssx, int *lssy)
 {
     int i,j;
     i = rand() % 10;
@@ -532,12 +532,18 @@ int enemyShoots(char* field)
     if (*(field + i*10 + j)=='`')
         {
             *(field + i*10 + j)='o';
+            *lsx = i;
+            *lsy = j;
             printf("Enemie MISSES %d %d\n",i,j);
             return 0;
         }
     else if (*(field + i*10 + j)=='*')
         {
             *(field + i*10 + j)='X';
+            *lsx = i;
+            *lsy = j;
+            *lssx = i;
+            *lssy = j;
             printf("Enemie HIT %d %d\n",i,j);
             return 1;
         }

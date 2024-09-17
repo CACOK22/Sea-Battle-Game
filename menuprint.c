@@ -53,8 +53,8 @@ void printField(char field[10][10])
 void drawMenu()
 {
     printf("1. New Game\n");
-    printf("2. Load Game (UNDERCONSTRUCTION)\n");
-    printf("3. Settings (UNDER CONSTRACTION)\n");
+    printf("2. (UNDER CONSTRUCTION)\n");
+    printf("3. Settings\n");
     printf("0. Exit\n");
 
 }
