@@ -2,7 +2,6 @@
 # Finish the field constructor
 # Add simple AI to bot
 # difficulty level and bot behaviour settings
-# Fix save and load
 # Normalize README
 
 
