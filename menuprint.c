@@ -113,7 +113,7 @@ void generatedFieldMenu(char yourField[10][10])
     system("cls");
     printField(yourField);
     printf("1. Generate different field\n");
-    printf("2. Start game\n");
+    printf("2. Continue\n");
     printf("3. Save that field\n");
     printf("0. Back\n");
 }

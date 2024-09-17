@@ -199,11 +199,11 @@ int main()
                             fillWithWater(yourField[0]);
                             generateRandomField(yourField[0]);
                         }
-                        if (selectionButton=='2')
+                        else if (selectionButton=='2')
                         {
                             selectionButton='0';
                         }
-                        if (selectionButton=='3')
+                        else if (selectionButton=='3')
                         {
                             while(selectionButton!='0')
                             {
@@ -214,12 +214,15 @@ int main()
                                 if (selectionButton=='3') fieldSave3(yourField);   
                             }
                         }
+                        else if (selectionButton=='0')
+                        {
+                            fillWithWater(yourField[0]);
+                            for (int i=0; i<10; i++) freeShips[i]=refresh[i];
+                        }
                     }
                 }
                 else if (selectionButton=='3')
                 {
-                    char yourField[10][10];
-                    fillWithWater(yourField[0]);
                     while(selectionButton!='0')
                     {
                         loadFileMenu();
@@ -229,6 +232,19 @@ int main()
                         if (selectionButton=='3') loadFile3(yourField[0]);
                         selectionButton='0';
                     }
+                    system("cls");
+                    printf("---LOADED FIELD---\n");
+                    printField(yourField);
+                    for (int i=0; i<10; i++) freeShips[i] = 0;
+                    printf("1. Continue\n");
+                    printf("0. Back\n");
+                    selectionButton=getch();
+                    if (selectionButton=='0')
+                    {
+                        fillWithWater(yourField[0]);
+                        for (int i=0; i<10; i++) freeShips[i] = refresh[i];
+                    }
+                    else selectionButton='0';
                 }
             }
             
@@ -290,7 +306,7 @@ int main()
                 }
             }
             
-
+            selectionButton='1';
         }
         else if (selectionButton=='2')
         {
@@ -304,7 +320,6 @@ int main()
             printf("Settings\n");
             getch();
         }
-
         
     }
     
