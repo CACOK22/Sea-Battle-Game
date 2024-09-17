@@ -53,8 +53,8 @@ void printField(char field[10][10])
 void drawMenu()
 {
     printf("1. New Game\n");
-    printf("2. Load Game\n");
-    printf("3. Settings\n");
+    printf("2. Load Game (UNDERCONSTRUCTION)\n");
+    printf("3. Settings (UNDER CONSTRACTION)\n");
     printf("0. Exit\n");
 
 }
@@ -73,7 +73,7 @@ void drawConstructionMenu(char yourField[10][10],int freeShips[10])
     system("cls");
     drawWithNotice(yourField,freeShips);
     printf("1. Add Ship\n");
-    printf("2. Remove Ship\n");
+    printf("2. Remove Ship (UNDER CONSTRUCTION)\n");
     if (isReady(freeShips)==1)
         printf("3. Start Game\n");
     printf("0. Back");
